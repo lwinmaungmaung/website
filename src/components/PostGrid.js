@@ -22,7 +22,7 @@ export default function PostGrid(props) {
                     <p className={"text-sm my-3 dark:text-white"}>{post.summary.replace(/(<([^>]+)>)/gi, "")}</p>
                 </div>
                 <div className="w-1/5 flex justify-center">
-                    { (props.image)? <Image src={props.image} alt={"none"} width={150} height={102}/> : ""}
+                    { (props.image)? <Image src={props.image} alt={"none"} width={220} height={220}/> : ""}
 
 
                 </div>
