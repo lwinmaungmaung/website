@@ -48,7 +48,7 @@ export default async function Post(props) {
     return (
         <main>
             <title>{post.title}</title>
-
+            <meta name={"og:image"} content={process.env.BACKEND_URL + post.full_image}/>
             <meta name="MobileOptimized" content="width"/>
             <meta name="HandheldFriendly" content="true"/>
             <meta name="twitter:card" content="summary_large_image"/>
