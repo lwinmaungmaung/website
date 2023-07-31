@@ -2,26 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/*Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
+
+.font-Montserrat-header {
+    font-family: 'Noto Serif', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+@layer components {
+    .content-body h2 {
+        @apply mt-5 mb-3 text-3xl;
+    }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    .content-body h3 {
+        @apply mt-5 mb-3 text-2xl;
+    }
+
+    .content-body h4 {
+        @apply mt-5 mb-3 text-xl;
+    }
+
+    .content-body h5 {
+        @apply mt-5 mb-3 text-lg;
+    }
+
+    .content-body h6 {
+        @apply mt-5 mb-3 text-sm;
+    }
+
+    .content-body code {
+        @apply bg-purple-950 w-full block m-3 p-3 text-green-600;
+    }
+
+    .content-body .text-align-left {
+        @apply text-left;
+    }
+
+    .content-body .text-align-center {
+        @apply text-center;
+    }
+
+    .content-body .text-align-right {
+        @apply text-right;
+    }
+
+    .content-body .text-align-justify {
+        @apply text-justify;
+    }
+
+    .content-body ul {
+        @apply list-disc ml-3;
+    }
+
+    .content-body ol {
+        @apply list-decimal ml-3;
+    }
+    .content-body hr{
+        @apply my-3;
+    }
+    .content-body blockquote{
+        @apply border-l-4 border-gray-400 pl-3 dark:text-white text-lg font-bold my-3;
+    }
+    .content-body p{
+        @apply my-6 leading-relaxed;
+    }
+    .category-balloon ul{
+        @apply flex;
+    }
+    .category-balloon ul li{
+        @apply p-2 rounded-2xl bg-gray-200 mx-0.5 dark:bg-gray-800 dark:text-gray-300;
+    }
 }
