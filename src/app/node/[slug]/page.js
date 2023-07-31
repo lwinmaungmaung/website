@@ -50,7 +50,7 @@ export default async function Post(props) {
     return (
         <main>
             <title>{post.title}</title>
-            <meta property="og:sitename" content="Lovely Family Host"/>
+            <meta property="og:sitename" content="Lwin Maung Maung - My Notes"/>
             <meta property="og:title" content={post.title}/>
             <meta property="og:image" content={ process.env.BACKEND_URL + post.full_image}/>
             <meta property={"og:url"} content={post.view_node}/>
