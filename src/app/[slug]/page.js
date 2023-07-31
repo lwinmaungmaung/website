@@ -59,13 +59,13 @@ export default async function Post(props) {
             <HeaderSmall />
             <div className={"flex justify-center"}>
                 <Suspense fallback={<div>Loading Post...</div>}>
-                    <div className={"w-3/5"}>
+                    <div className={"m-3 md:m-0 md:w-3/5"}>
                         <div className="">
-                            <Link href={"/"} className="dark:text-white font-bold border-2 border-gray-500 dark:border-white rounded-full absolute px-2 py-1 -ml-12">
+                            <Link href={"/"} className="dark:text-white font-bold border-2 border-gray-500 dark:border-white rounded-full absolute px-2 py-1 -mt-10 md:-ml-12">
                                 &lt;-
                             </Link>
                             <div className="">
-                                <h1 className="mt-8 text-4xl dark:text-white">{post.title}</h1>
+                                <h1 className="mt-12 md:mt-8 text-4xl dark:text-white">{post.title}</h1>
                                 <div className="text-sm my-2 dark:text-gray-300">
                                     Published on &nbsp;
                                     <span dangerouslySetInnerHTML={{__html: post.created}}></span>

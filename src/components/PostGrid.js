@@ -16,13 +16,13 @@ export default function PostGrid(props) {
                 Published on &nbsp;
                 <span dangerouslySetInnerHTML={{__html: post.created}}></span>
             </div>
-            <div className={"flex"}>
-                <div className="w-4/5 pr-3 align-middle">
+            <div className={"flex "}>
+                <div className="w-fit md:w-4/5 pr-3 align-middle">
                     <Link href={ post.view_node } className="text-xl font-bold dark:text-white">{post.title}</Link>
                     <p className={"text-sm my-3 dark:text-white"}>{post.summary.replace(/(<([^>]+)>)/gi, "")}</p>
                 </div>
-                <div className="w-1/5 flex justify-center">
-                    { (props.image)? <Image src={props.image} alt={"none"} width={220} height={220}/> : ""}
+                <div className="w-fit md:w-1/5 flex justify-center aspect-square">
+                    { (props.image)? <Image className={"object-contain h-auto w-auto"} src={props.image} alt={"none"} width={220} height={220}/> : ""}
 
 
                 </div>
