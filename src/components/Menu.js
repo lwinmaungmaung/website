@@ -12,7 +12,7 @@ export default async function Menu(){
 }
 
 async function fetchMainMenu()    {
-    const res = await fetch(`${process.env.MAIN_MENU_URL}`,{ next: { tags: ['menu'] }});
+    const res = await fetch(`${process.env.MAIN_MENU_URL}`,{ cache: "no-store"});
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')

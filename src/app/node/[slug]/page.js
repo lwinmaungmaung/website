@@ -2,6 +2,7 @@ import {Suspense} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeaderSmall from "@/components/HeaderSmall";
+import getPosts from "@/lib/GetPosts";
 
 function readingTime(body_text) {
     const wpm = 225;
@@ -9,22 +10,9 @@ function readingTime(body_text) {
     const time = Math.ceil(words / wpm);
     return time;
 }
-async function getData() {
-    const res = await fetch(`${process.env.BACKEND_URL}/api?_format=json`, { next: { tags: ['posts'] }})
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-
-    // Recommendation: handle errors
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-    }
-
-    return res.json();
-}
 
 async function getSinglePost(slug){
-    const data = await getData();
+    const data = await getPosts();
     if(slug!=""){
         const post = data.find(post => post.view_node ===  '/node/'+slug)
         if(!post){

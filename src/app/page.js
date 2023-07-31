@@ -3,26 +3,11 @@ import PostGrid from "@/components/PostGrid";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";
-
-
-async function getData() {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/?_format=json`, {next:{tags:['posts']}})
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-
-    // Recommendation: handle errors
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-    }
-
-    return res.json();
-}
-
+import getPosts from "@/lib/GetPosts";
 
 
 export default async function Home() {
-    const posts = await getData();
+    const posts = await getPosts();
     return (
         <main>
             <Header/>
