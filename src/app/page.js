@@ -1,6 +1,7 @@
 import {Suspense} from "react";
 import PostGrid from "@/components/PostGrid";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 async function fetchMainMenu()    {
     const res = await fetch(`${process.env.MAIN_MENU_URL}`,{ next: { tags: ['menu'] }});
@@ -36,10 +37,7 @@ export default async function Home() {
     const posts = await getData();
     return (
         <main>
-            <div className={"mt-3 md:mt-8 dark:text-white"}>
-                <h1 className="text-5xl text-center font-Montserrat-header">Lwin Maung Maung</h1>
-                <h2 className="text-3xl text-center text-gray-500">My Notes and Blogs</h2>
-            </div>
+            <Header/>
             <div className={"border-t-2 border-b-2 border-gray-300 my-3 md:my-6 py-3 flex justify-center"}>
                 {mainMenu.map((menu_item,index) => (
                     <Link href={menu_item.href} key={index} className={"mx-6 dark:text-white"}>{menu_item.title} </Link>

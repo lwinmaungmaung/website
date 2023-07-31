@@ -1,6 +1,7 @@
 import {Suspense} from "react";
 import Image from "next/image";
 import Link from "next/link";
+import HeaderSmall from "@/components/HeaderSmall";
 
 function readingTime(body_text) {
     const wpm = 225;
@@ -61,10 +62,7 @@ export default async function Post(props) {
     return (
         <main>
             <title>{post.title}</title>
-            <div className={"mt-3 mx-3 md:mx-8 md:mt-8 dark:text-white flex"}>
-                <h1 className="w-1/2  text-3xl text-left font-Montserrat-header text-left">Lwin Maung Maung</h1>
-                <h2 className="w-1/2 pt-1.5 text-xl text-right text-gray-500">My Notes and Blogs</h2>
-            </div>
+            <HeaderSmall />
             <div className={"flex justify-center"}>
                 <Suspense fallback={<div>Loading Post...</div>}>
                     <div className={"w-3/5"}>
