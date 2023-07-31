@@ -15,8 +15,8 @@ async function getMainMenu(){
     const linkset = mainMenuRec.linkset[0];
     return linkset.item.reverse();
 }
-async function getData() {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/?_format=json`, {next:{tags:['posts']}})
+async function getData(slug) {
+    const res = await fetch(`${process.env.BACKEND_URL}/api/category/${slug}`, { next: { revalidate: 60 }})
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
 
@@ -31,20 +31,30 @@ async function getData() {
 
 
 
-export default async function Home() {
+export default async function Category(props) {
     const mainMenu = await getMainMenu();
-    const posts = await getData();
+    const posts = await getData(props.params.slug);
     return (
         <main>
             <div className={"mt-3 md:mt-8 dark:text-white"}>
                 <h1 className="text-5xl text-center font-Montserrat-header">Lwin Maung Maung</h1>
                 <h2 className="text-3xl text-center text-gray-500">My Notes and Blogs</h2>
             </div>
+
             <div className={"border-t-2 border-b-2 border-gray-300 my-3 md:my-6 py-3 flex justify-center"}>
                 {mainMenu.map((menu_item,index) => (
                     <Link href={menu_item.href} key={index} className={"mx-6 dark:text-white"}>{menu_item.title} </Link>
                 ))}
             </div>
+            <div className="flex justify-center">
+                <div className="w-3/5">
+                    <Link href={"/"} className="mt-2 dark:text-white font-bold border-2 border-gray-500 dark:border-white rounded-full absolute px-2 py-1 -ml-12">
+                        &lt;-
+                    </Link>
+                    <h1 className=" text-4xl dark:text-white">{props.params.slug}</h1>
+                </div>
+            </div>
+
             <div className={"flex justify-center"}>
                 <Suspense fallback={<div>Loading Posts...</div>}>
                     <div className={"w-3/5"}>

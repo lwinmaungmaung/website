@@ -25,7 +25,7 @@ async function getData() {
 async function getSinglePost(slug){
     const data = await getData();
     if(slug!=""){
-        const post = data.find(post => post.view_node ===  '/'+slug)
+        const post = data.find(post => post.view_node ===  '/node/'+slug)
         if(!post){
             return null;
         }
