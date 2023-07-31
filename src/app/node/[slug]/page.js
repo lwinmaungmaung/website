@@ -50,6 +50,19 @@ export default async function Post(props) {
     return (
         <main>
             <title>{post.title}</title>
+            <meta property="og:sitename" content="Lovely Family Host"/>
+            <meta property="og:title" content={post.title}/>
+            <meta property="og:image" content={ process.env.BACKEND_URL + post.full_image}/>
+            <meta property={"og:url"} content={post.view_node}/>
+            <meta property={"og:type"} content={"article"}/>
+            <meta name={"og:description"} content={post.summary.replace(/(<([^>]+)>)/gi, "")}/>
+            <meta name="MobileOptimized" content="width"/>
+            <meta name="HandheldFriendly" content="true"/>
+            <meta name="twitter:card" content="summary_large_image"/>
+            <meta name="twitter:creator" content="@lwinmaung_maung" />
+            <meta name="twitter:site" content="@lwinmaung_maung"/>
+            <meta name={"twitter:description"} content={post.summary.replace(/(<([^>]+)>)/gi, "")}/>
+            <meta name={"description"} content={post.summary.replace(/(<([^>]+)>)/gi, "")}/>
             <HeaderSmall />
             <div className={"flex justify-center"}>
                 <Suspense fallback={<div>Loading Post...</div>}>
