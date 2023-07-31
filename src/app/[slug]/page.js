@@ -24,38 +24,29 @@ async function getSinglePost(slug){
 }
 
 
-export function generateMetadata() {
+export async function generateMetadata(props) {
     // read route params
+    const post = await getSinglePost(props.params.slug)
     return {
-        title : "Lwin Maung Maung"
+        title: post.title,
+        description: post.summary.replace(/(<([^>]+)>)/gi, ""),
+        openGraph: {
+            sitename: "Lwin Maung Maung - My Notes",
+            title: post.title,
+            image:  process.env.BACKEND_URL + post.full_image,
+            url: "https://www.lwinmaungmaung.com"+post.view_node,
+            type: 'article',
+            description: post.summary.replace(/(<([^>]+)>)/gi, "")
+        }
     }
 
-    // const id = params.id
-    //
-    // // fetch data
-    // const product = await fetch(`https://.../${id}`).then((res) => res.json())
-    //
-    // // optionally access and extend (rather than replace) parent metadata
-    // const previousImages = (await parent).openGraph?.images || []
-    //
-    // return {
-    //     title: product.title,
-    //     openGraph: {
-    //         images: ['/some-specific-page-image.jpg', ...previousImages],
-    //     },
-    // }
 }
 export default async function Post(props) {
     const post = await getSinglePost(props.params.slug);
     return (
         <main>
             <title>{post.title}</title>
-            <meta property="og:sitename" content="Lwin Maung Maung - My Notes"/>
-            <meta property="og:title" content={post.title}/>
-            <meta property="og:image" content={ process.env.BACKEND_URL + post.full_image}/>
-            <meta property={"og:url"} content={post.view_node}/>
-            <meta property={"og:type"} content={"article"}/>
-            <meta name={"og:description"} content={post.summary.replace(/(<([^>]+)>)/gi, "")}/>
+
             <meta name="MobileOptimized" content="width"/>
             <meta name="HandheldFriendly" content="true"/>
             <meta name="twitter:card" content="summary_large_image"/>

@@ -3,17 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import HeaderSmall from "@/components/HeaderSmall";
 import getPosts from "@/lib/GetPosts";
+import {notFound} from "next/navigation";
 
 function readingTime(body_text) {
     const wpm = 225;
     const words = body_text.trim().split(/\s+/).length;
-    const time = Math.ceil(words / wpm);
-    return time;
+    return  Math.ceil(words / wpm);
 }
 
 async function getSinglePost(slug){
     const data = await getPosts();
-    if(slug!=""){
+    if(slug!==""){
         const post = data.find(post => post.view_node ===  '/node/'+slug)
         if(!post){
             return null;
@@ -24,20 +24,23 @@ async function getSinglePost(slug){
 }
 
 
-export function generateMetadata() {
-    // read route params
-    return {
-        title : "Lwin Maung Maung"
+export async function generateMetadata() {
+    const post = await getSinglePost(props.params.slug)
+    if(!post){
+        return notFound();
     }
-
-    // const id = params.id
-    //
-    // // fetch data
-    // const product = await fetch(`https://.../${id}`).then((res) => res.json())
-    //
-    // // optionally access and extend (rather than replace) parent metadata
-    // const previousImages = (await parent).openGraph?.images || []
-    //
+    return {
+        title: post.title,
+        description: post.summary.replace(/(<([^>]+)>)/gi, ""),
+        openGraph: {
+            sitename: "Lwin Maung Maung - My Notes",
+            title: post.title,
+            image:  process.env.BACKEND_URL + post.full_image,
+            url: "https://www.lwinmaungmaung.com"+post.view_node,
+            type: 'article',
+            description: post.summary.replace(/(<([^>]+)>)/gi, "")
+        }
+    }
     // return {
     //     title: product.title,
     //     openGraph: {
