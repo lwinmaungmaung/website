@@ -31,7 +31,11 @@
     }
 
     .content-body code {
-        @apply bg-purple-950 w-full block m-3 p-3 text-green-600;
+        @apply text-purple-950 dark:text-purple-500;
+    }
+
+    .content-body pre code {
+        @apply block bg-purple-950 w-full m-3 p-3 text-green-600;
     }
 
     .content-body .text-align-left {
