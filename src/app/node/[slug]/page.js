@@ -71,7 +71,7 @@ export default async function Post(props) {
                 <Suspense fallback={<div>Loading Post...</div>}>
                     <div className={"w-3/5"}>
                         <div className="">
-                            <Link href={"/"} className="dark:text-white font-bold border-2 border-gray-500 dark:border-white rounded-full absolute px-2 py-1 -ml-12">
+                            <Link href={"/"} className="dark:text-white font-bold border-2 border-gray-500 dark:border-white rounded-full absolute px-2 py-1 -mt-10 md:mt-0 -ml-12">
                                 &lt;-
                             </Link>
                             <div className="">
