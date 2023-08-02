@@ -10,6 +10,9 @@
 }
 
 @layer components {
+    .content-body{
+        @apply overflow-x-auto;
+    }
     .content-body h2 {
         @apply mt-5 mb-3 text-3xl;
     }
@@ -34,8 +37,11 @@
         @apply text-purple-950 dark:text-purple-500;
     }
 
-    .content-body pre code {
-        @apply block bg-purple-950 w-full m-3 p-3 text-green-600;
+    .content-body pre {
+        @apply p-3 w-32 w-full bg-purple-950 h-fit whitespace-pre-wrap;
+    }
+    .content-body pre code{
+        @apply block text-green-600 dark:text-green-400;
     }
 
     .content-body .text-align-left {
