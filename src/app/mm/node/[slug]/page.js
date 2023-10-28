@@ -14,7 +14,7 @@ function readingTime(body_text) {
 async function getSinglePost(slug){
     const data = await getPosts();
     if(slug!==""){
-        const post = data.find(post => post.view_node ===  '/node/'+slug)
+        const post = data.find(post => post.view_node ===  '/mm/node/'+slug)
         if(!post){
             return null;
         }
@@ -27,7 +27,7 @@ async function getSinglePost(slug){
 export async function generateMetadata(props) {
     const post = await getSinglePost(props.params.slug)
     if(!post){
-        return notFound();
+        return null;
     }
     return {
         title: post.title,
@@ -50,6 +50,10 @@ export async function generateMetadata(props) {
 }
 export default async function Post(props) {
     const post = await getSinglePost(props.params.slug);
+    console.log(post)
+    if(!post){
+        notFound();
+    }
     return (
         <main>
             <title>{post.title}</title>

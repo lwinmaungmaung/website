@@ -15,13 +15,9 @@ export default async function Home() {
             <div className={"flex justify-center"}>
                 <Suspense fallback={<div>Loading Posts...</div>}>
                     <div className={"m-3 md:m-0 md:w-3/5"}>
-                        {/*{posts.filter((post)=> post.langcode==="English" && post.type==="node--article").map((post,index)=>(*/}
-                        {/*    // <PostGrid key={index} time={post.created} href={post.nid+'-'+post.view_node.substr('1')} summary={post.summary} title={post.title} image={process.env.BACKEND_URL + post.field_image}/>*/}
-                        {/*    <PostGrid key={index} post={post} image={process.env.BACKEND_URL + post.field_image}/>*/}
-                        {/*))}*/}
-                        {posts.map((post,index)=>(
+                        {posts.filter((post)=> post.type === "Event" || post.type === "Events").map((post,index)=>(
                             // <PostGrid key={index} time={post.created} href={post.nid+'-'+post.view_node.substr('1')} summary={post.summary} title={post.title} image={process.env.BACKEND_URL + post.field_image}/>
-                            <PostGrid key={index} post={post} />
+                            <PostGrid key={index} post={post} image={process.env.BACKEND_URL + post.field_image}/>
                         ))}
                     </div>
                 </Suspense>

@@ -3,8 +3,10 @@ import PostGrid from "@/components/PostGrid";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";
+import {DrupalClient} from "next-drupal";
 
 async function getData(slug) {
+
     const res = await fetch(`${process.env.BACKEND_URL}/api/category/${slug}`, { next: { revalidate: 60 }})
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
