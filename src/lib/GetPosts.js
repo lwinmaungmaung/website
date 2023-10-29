@@ -13,6 +13,7 @@ export default async function getPosts() {
             }
         }
     )
+
     if(!articles){
         return notFound()
     }

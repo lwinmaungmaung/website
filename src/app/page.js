@@ -1,13 +1,16 @@
 import {Suspense} from "react";
 import PostGrid from "@/components/PostGrid";
-import Link from "next/link";
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";
 import getPosts from "@/lib/GetPosts";
+import {notFound} from "next/navigation";
 
+export const revalidate=0
 
 export default async function Home() {
     const posts = await getPosts();
+    if(!posts)
+        return notFound()
     return (
         <main>
             <Header/>

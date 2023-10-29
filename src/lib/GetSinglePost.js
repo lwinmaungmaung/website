@@ -1,8 +1,10 @@
 import {DrupalClient} from "next-drupal";
+import {notFound} from "next/navigation";
 
 export default async function GetSinglePost(slug) {
     const drupal = new DrupalClient(process.env.BACKEND_URL);
     const path = await drupal.translatePath('/' + slug);
+    if(!path)return notFound()
     const article = await drupal.getResource('node--article', path.entity.uuid,
         {
             params: {
@@ -13,7 +15,7 @@ export default async function GetSinglePost(slug) {
 
 
     if(!article){
-        return null;
+        return notFound();
     }
     return article;
 }

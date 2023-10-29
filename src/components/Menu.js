@@ -16,7 +16,6 @@ async function fetchMainMenu()    {
     const drupal = new DrupalClient(process.env.BACKEND_URL);
     const { menu, items } = await drupal.getMenu("main")
     if (!items) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
     }
     return items;

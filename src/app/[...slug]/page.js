@@ -6,6 +6,7 @@ import GetSinglePost from "@/lib/GetSinglePost";
 import {notFound} from "next/navigation";
 import moment from "moment";
 
+export const revalidate = 0
 function readingTime(body_text) {
     const wpm = 225;
     const words = body_text.trim().split(/\s+/).length;
@@ -14,7 +15,7 @@ function readingTime(body_text) {
 
 export async function generateMetadata(props) {
     // read route params
-    const post = await GetSinglePost(props.params.slug)
+    const post = await GetSinglePost(props.params.slug.join('/'))
     if (post === null) return {title: 'lwinmaungmaung'};
     return {
         title: post.title,
@@ -32,7 +33,7 @@ export async function generateMetadata(props) {
 }
 
 export default async function Post(props) {
-    const post = await GetSinglePost(props.params.slug);
+    const post = await GetSinglePost(props.params.slug.join('/'));
 
     if (post === null) return notFound();
     return (

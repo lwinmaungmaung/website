@@ -23,7 +23,7 @@ export default function PostGrid(props) {
             </div>
             <div className={"flex "}>
                 <div className="w-fit md:w-4/5 pr-3 align-middle">
-                    <Link href={ post.path.alias } className="text-xl font-bold dark:text-white">{post.title}</Link>
+                    <Link href={ post.path.alias?? '/node/'+post.drupal_internal__nid } className="text-xl font-bold dark:text-white">{post.title}</Link>
                     <p className={"text-sm my-3 dark:text-white"}>{post.body.summary.replace(/(<([^>]+)>)/gi, "")}</p>
                 </div>
                 <div className="w-fit md:w-1/5 flex justify-center aspect-square">
