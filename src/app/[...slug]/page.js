@@ -35,6 +35,7 @@ export async function generateMetadata(props) {
 export default async function Post(props) {
     const post = await GetSinglePost(props.params.slug.join('/'));
     if (post === null) return notFound();
+    const type = post.type
 
     return (
         <main>
@@ -74,13 +75,16 @@ export default async function Post(props) {
                             </div>
                         </div>
 
-                        <div>{(post.field_url)? <div className="my-4 text-white text-xl bg-red-500 p-2">Live Now : <a href={post.field_url.uri}>{post.field_url.title}</a></div> :''}</div>
+                        <div>{(post.field_url && type==='node--event')? <div className="my-4 text-white text-xl bg-red-500 p-2">Live Now : <a href={post.field_url.uri}>{post.field_url.title}</a></div> :''}</div>
+                        {post.field_image &&
+                            <Image className={"my-3 md:my-6"} src={process.env.BACKEND_URL + post.field_image.uri.url}
+                                   alt={"Field Image"} width={1920} height={1080} loading={"lazy"}/>
+                        }
 
-                        <Image className={"my-3 md:my-6"} src={process.env.BACKEND_URL + post.field_image.uri.url}
-                               alt={"Field Image"} width={1920} height={1080} loading={"lazy"}/>
                         <div className="my-3 dark:text-white content-body">
                             <div dangerouslySetInnerHTML={{__html: post.body.processed}}></div>
                             {/*<TextLong value={post.body.processed}/>*/}
+                            <div>{(post.field_url && type==='node--job')? <div className="my-4 dark:text-white text-xl p-2">Source: <a href={post.field_url.uri}>{post.field_url.title}</a></div> :''}</div>
                         </div>
 
 
