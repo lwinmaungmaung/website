@@ -1,4 +1,5 @@
 import {DrupalClient} from "next-drupal";
+import {notFound} from "next/navigation";
 
 export default async function getPosts() {
     const drupal = new DrupalClient(process.env.BACKEND_URL);
@@ -13,19 +14,7 @@ export default async function getPosts() {
         }
     )
     if(!articles){
-        throw new Error('Failed to fetch data')
+        return notFound()
     }
     return articles;
-
-    // const res = await fetch(`${process.env.BACKEND_URL}/api?_format=json`, { cache: 'no-store'})
-    // // The return value is *not* serialized
-    // // You can return Date, Map, Set, etc.
-    //
-    // // Recommendation: handle errors
-    // if (!res.ok) {
-    //     // This will activate the closest `error.js` Error Boundary
-    //     throw new Error('Failed to fetch data')
-    // }
-    //
-    // return res.json();
 }

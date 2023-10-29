@@ -50,7 +50,6 @@ export async function generateMetadata(props) {
 }
 export default async function Post(props) {
     const post = await getSinglePost(props.params.slug);
-    console.log(post)
     if(!post){
         notFound();
     }

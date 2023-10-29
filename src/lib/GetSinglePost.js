@@ -1,7 +1,6 @@
 import {DrupalClient} from "next-drupal";
 
 export default async function GetSinglePost(slug) {
-    console.log('/' + slug)
     const drupal = new DrupalClient(process.env.BACKEND_URL);
     const path = await drupal.translatePath('/' + slug);
     const article = await drupal.getResource('node--article', path.entity.uuid,

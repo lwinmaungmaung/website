@@ -4,20 +4,25 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Menu from "@/components/Menu";
 import {DrupalClient} from "next-drupal";
+import {notFound} from "next/navigation";
 
 async function getData(slug) {
-
-    const res = await fetch(`${process.env.BACKEND_URL}/api/category/${slug}`, { next: { revalidate: 60 }})
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-
-    // Recommendation: handle errors
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+    const drupal = new DrupalClient(process.env.BACKEND_URL);
+    const path = await drupal.translatePath('/category/' + slug);
+    if(!path) return notFound()
+    const articles = await drupal.getResourceCollection('node--article',
+        {
+            params: {
+                "include": "field_category,field_image",
+                sort : '-created',
+                'filter[field_category.id][value]': path.entity.uuid
+                // 'filter[taxonomy_term--field_category][condition][value]' : path.entity.uuid
+            }
+        });
+    if(!articles){
+        return notFound()
     }
-
-    return res.json();
+    return articles;
 }
 
 
@@ -42,7 +47,7 @@ export default async function Category(props) {
                     <div className={"w-3/5"}>
                         {posts.map((post,index)=>(
                             // <PostGrid key={index} time={post.created} href={post.nid+'-'+post.view_node.substr('1')} summary={post.summary} title={post.title} image={process.env.BACKEND_URL + post.field_image}/>
-                            <PostGrid key={index} post={post} image={process.env.BACKEND_URL + post.field_image}/>
+                            <PostGrid key={index} post={post}/>
                         ))}
                     </div>
                 </Suspense>
