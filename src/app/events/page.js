@@ -17,7 +17,7 @@ export default async function Home() {
                     <div className={"m-3 md:m-0 md:w-3/5"}>
                         {posts.map((post,index)=>(
                             // <PostGrid key={index} time={post.created} href={post.nid+'-'+post.view_node.substr('1')} summary={post.summary} title={post.title} image={process.env.BACKEND_URL + post.field_image}/>
-                            <PostGrid key={index} post={post} image={process.env.BACKEND_URL + post.field_image}/>
+                            <PostGrid key={index} post={post}/>
                         ))}
                     </div>
                 </Suspense>
