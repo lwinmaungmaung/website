@@ -23,13 +23,13 @@ async function getData(slug) {
     if(!articles){
         return notFound()
     }
-    return articles;
+    return [articles,path.label];
 }
 
 
 
 export default async function Category(props) {
-    const posts = await getData(props.params.slug);
+    const [posts,label] = await getData(props.params.slug);
     return (
         <main>
             <Header/>
@@ -39,7 +39,7 @@ export default async function Category(props) {
                     <Link href={"/"} className="mt-2 dark:text-white font-bold border-2 border-gray-500 dark:border-white rounded-full absolute px-2 py-1 -ml-12">
                         &lt;-
                     </Link>
-                    <h1 className=" text-4xl dark:text-white">{props.params.slug}</h1>
+                    <h1 className=" text-4xl dark:text-white">{label}</h1>
                 </div>
             </div>
 
