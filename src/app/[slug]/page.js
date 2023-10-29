@@ -74,7 +74,7 @@ export default async function Post(props) {
                         </div>
 
                         <Image className={"my-3 md:my-6"} src={process.env.BACKEND_URL + post.field_image.uri.url}
-                               alt={"Field Image"} width={1920} height={1080}/>
+                               alt={"Field Image"} width={1920} height={1080} loading={"lazy"}/>
                         <div className="my-3 dark:text-white content-body">
                             <div dangerouslySetInnerHTML={{__html: post.body.processed}}></div>
                             {/*<TextLong value={post.body.processed}/>*/}
