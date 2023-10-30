@@ -5,6 +5,7 @@ import HeaderSmall from "@/components/HeaderSmall";
 import GetSinglePost from "@/lib/GetSinglePost";
 import {notFound} from "next/navigation";
 import moment from "moment";
+import Menu from "@/components/Menu";
 
 export const revalidate = 60
 function readingTime(body_text) {
@@ -49,6 +50,7 @@ export default async function Post(props) {
             {/*<meta name={"twitter:description"} content={post.summary.replace(/(<([^>]+)>)/gi, "")}/>*/}
             {/*<meta name={"description"} content={post.summary.replace(/(<([^>]+)>)/gi, "")}/>*/}
             <HeaderSmall/>
+            <Menu/>
             <div className={"flex justify-center"}>
                 <Suspense fallback={<div>Loading Post...</div>}>
                     <div className={"m-3 md:m-0 md:w-3/5"}>
