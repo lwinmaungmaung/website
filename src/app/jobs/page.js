@@ -5,7 +5,7 @@ import getJobs from "@/lib/GetJobs";
 import JobGrid from "@/components/JobGrid";
 import Disclaimer from "@/components/Disclaimer";
 
-export const revalidate = 0
+export const revalidate = 180
 export default async function Home() {
     const posts = await getJobs();
     return (

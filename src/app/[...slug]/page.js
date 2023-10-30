@@ -6,7 +6,7 @@ import GetSinglePost from "@/lib/GetSinglePost";
 import {notFound} from "next/navigation";
 import moment from "moment";
 
-export const revalidate = 0
+export const revalidate = 60
 function readingTime(body_text) {
     const wpm = 225;
     const words = body_text.trim().split(/\s+/).length;

@@ -6,7 +6,7 @@ import Menu from "@/components/Menu";
 import {DrupalClient} from "next-drupal";
 import {notFound} from "next/navigation";
 
-export const revalidate=0
+export const revalidate=60
 async function getData(slug) {
     const drupal = new DrupalClient(process.env.BACKEND_URL);
     const path = await drupal.translatePath('/category/' + slug);

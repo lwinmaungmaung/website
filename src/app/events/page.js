@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Menu from "@/components/Menu";
 import getEvents from "@/lib/GetEvents";
 
-export const revalidate = 0
+export const revalidate = 180
 export default async function Home() {
     const posts = await getEvents();
     return (
