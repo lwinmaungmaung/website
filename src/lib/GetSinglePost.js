@@ -10,8 +10,11 @@ export default async function GetSinglePost(slug) {
     if(type==='node--article'){
          include = "field_category,field_image";
     }
-    if(type==='node--event'){
+    else if(type==='node--event'){
         include = "field_event_category,field_image";
+    }
+    else{
+        include = "field_category,field_image";
     }
 
     const content = await drupal.getResource(type, path.entity.uuid,

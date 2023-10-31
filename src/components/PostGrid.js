@@ -10,6 +10,7 @@ function readingTime(body_text) {
 export default function PostGrid(props) {
     const post = props.post;
     const reading_time = readingTime(props.post.body.value)
+    console.log(post)
     return (
         <div className={"my-3 md:my-9 pb-5 border-b border-gray-200"}>
             <div className="text-sm my-2 dark:text-gray-300 md:flex">
@@ -26,10 +27,10 @@ export default function PostGrid(props) {
             <div className={"md:flex md:mx-auto"}>
                 <div className="w-fit md:w-4/5 md:pr-3 align-middle">
                     <Link href={ post.path.alias?? '/node/'+post.drupal_internal__nid } className="text-xl font-bold dark:text-white">{post.title}</Link>
-                    <p className={"text-sm my-3 dark:text-white"}>{post.body.summary.replace(/(<([^>]+)>)/gi, "")}</p>
+                    <p className={"text-sm my-3 dark:text-white"}>{(post.body.summary)?post.body.summary.replace(/(<([^>]+)>)/gi, ""):post.body.processed.replace(/(<([^>]+)>)/gi, "").substring(0,300)+"..."}</p>
                 </div>
                 <div className="w-fit md:w-1/5 flex justify-center md:aspect-square">
-                    { (post.field_image?.uri.url)? <Image layout={"responsive"} className={"object-contain h-auto w-auto"} src={ process.env.BACKEND_URL + post.field_image.uri.url} alt={"none"} width={220} height={220} loading={"lazy"}/> : ""}
+                    { (post.field_image?.uri.url)? <Image className={"object-contain h-auto w-auto"} src={ process.env.BACKEND_URL + post.field_image.uri.url} alt={"none"} width={220} height={220} loading={"lazy"}/> : ""}
 
 
                 </div>

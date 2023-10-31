@@ -37,11 +37,12 @@ export default async function Post(props) {
     const post = await GetSinglePost(props.params.slug.join('/'));
     if (post === null) return notFound();
     const type = post.type
-
     return (
         <main>
             <title>{post.title}</title>
-            <meta name={"og:image"} content={process.env.BACKEND_URL + post.full_image}/>
+            { post.field_image &&
+                <meta name={"og:image"} content={process.env.BACKEND_URL + post.field_image.uri.url}/>
+            }
             <meta name="MobileOptimized" content="width"/>
             <meta name="HandheldFriendly" content="true"/>
             <meta name="twitter:card" content="summary_large_image"/>
