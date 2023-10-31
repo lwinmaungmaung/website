@@ -10,7 +10,6 @@ function readingTime(body_text) {
 export default function PostGrid(props) {
     const post = props.post;
     const reading_time = readingTime(props.post.body.value)
-    console.log(post)
     return (
         <div className={"my-3 md:my-9 pb-5 border-b border-gray-200"}>
             <div className="text-sm my-2 dark:text-gray-300 md:flex">

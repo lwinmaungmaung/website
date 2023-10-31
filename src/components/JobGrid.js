@@ -14,7 +14,9 @@ export default function JobGrid(props) {
                 </div>
                 <div className="flex items-center my-3 justify-center">
                     <Link href={ post.path.alias?? '/node/'+post.drupal_internal__nid } className={"dark:bg-gray-300 border border-gray-800 my-2 p-4 rounded mr-3"}>View</Link>
-                    <Link target={"_blank"} href={post.field_url.uri} className={"dark:bg-gray-300 border border-gray-800 my-2 p-4 rounded"}>Source</Link>
+                    {post.field_url &&
+                        <Link target={"_blank"} href={post.field_url.uri} className={"dark:bg-gray-300 border border-gray-800 my-2 p-4 rounded"}>Source</Link>
+                    }
                 </div>
 
             </div>
