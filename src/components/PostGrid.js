@@ -17,10 +17,15 @@ export default function PostGrid(props) {
                     Published on &nbsp;
                     <span dangerouslySetInnerHTML={{__html: moment(post.created).format('MMM Do, Y')}}></span>
                 </div>
-                <div className={'md:mx-2 text-gray-600'}>
-                Updated: &nbsp;
-                    <span dangerouslySetInnerHTML={{__html: moment(post.updated).format('MMM Do, Y')}}></span>
-                </div>
+                {
+                    (post.changed && moment(post.created).format('MMM Do, Y') !== moment(post.changed).format('MMM Do, Y')) &&
+                    <div className={'md:mx-2 text-gray-600'}> |
+                        Updated: &nbsp;
+                        <span>{moment(post.changed).format('MMM Do, Y')}</span>
+                        {/*<span dangerouslySetInnerHTML={{__html: moment(post.changed).format('MMM Do, Y')}}></span>*/}
+                    </div>
+                }
+
 
             </div>
             <div className={"md:flex md:mx-auto"}>
@@ -43,7 +48,12 @@ export default function PostGrid(props) {
                     <div key={index} className={"p-2 border border-gray-300 mx-0.5 first:rounded-l-full bg-gray-300"} >{category.name??''}</div>
                 ))}
 
-                <div className={"text-gray-500 mx-0.5 p-2 dark:text-gray-300 rounded-r-full border border-gray-300"}>{reading_time} m</div>
+                <div className={"flex text-gray-500 mx-0.5 p-2 dark:text-gray-300 rounded-r-full border border-gray-300"}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mr-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                    <b>{reading_time}</b>m
+                </div>
 
             </div>
         </div>
