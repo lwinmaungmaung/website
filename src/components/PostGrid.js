@@ -15,14 +15,13 @@ export default function PostGrid(props) {
             <div className="text-sm my-2 dark:text-gray-300 md:flex">
                 <div className={'dark:text-white'}>
                     Published on &nbsp;
-                    <span dangerouslySetInnerHTML={{__html: moment(post.created).format('MMM Do, Y')}}></span>
+                    <span>{moment(post.created).format('MMM Do, Y')}</span>
                 </div>
                 {
                     (post.changed && moment(post.created).format('MMM Do, Y') !== moment(post.changed).format('MMM Do, Y')) &&
                     <div className={'md:mx-2 text-gray-600'}> |
                         Updated: &nbsp;
                         <span>{moment(post.changed).format('MMM Do, Y')}</span>
-                        {/*<span dangerouslySetInnerHTML={{__html: moment(post.changed).format('MMM Do, Y')}}></span>*/}
                     </div>
                 }
 
@@ -41,11 +40,7 @@ export default function PostGrid(props) {
             </div>
             <div className="text-sm my-2 category-balloon flex">
                 { post.field_category && post.field_category.map((category,index)=>(
-                    <div key={index} className={"p-2 border border-gray-300 mx-0.5 first:rounded-l-full bg-gray-300"} >{category.name??''}</div>
-                ))}
-
-                { post.field_event_category && post.field_event_category.map((category,index)=>(
-                    <div key={index} className={"p-2 border border-gray-300 mx-0.5 first:rounded-l-full bg-gray-300"} >{category.name??''}</div>
+                    <div key={index} className={"p-2 border uppercase text-l pt-2.5 border-gray-300 mx-0.5 first:rounded-l-full bg-gray-300"} >{category.name??''}</div>
                 ))}
 
                 <div className={"flex text-gray-500 mx-0.5 p-2 dark:text-gray-300 rounded-r-full border border-gray-300"}>
