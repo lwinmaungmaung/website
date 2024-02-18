@@ -40,6 +40,15 @@
     .content-body pre {
         @apply p-3 w-32 w-full bg-purple-950 h-fit whitespace-pre-wrap;
     }
+    .content-body pre code.language-bash:before {
+        content: "[user@host ~]$";
+        @apply text-green-500 mr-3;
+    }
+    .content-body pre code.language-rootbash:before {
+        content: "[root@host ~]#";
+        @apply text-red-500 mr-3;
+    }
+
     .content-body pre code{
         @apply block text-green-600 dark:text-green-400;
     }
