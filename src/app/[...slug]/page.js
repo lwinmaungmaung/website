@@ -86,10 +86,10 @@ export default async function Post(props) {
                             <>
                                 <Image className={"my-3 md:my-6 w-full lg:hidden"}
                                        src={process.env.BACKEND_URL + post.field_image.uri.url}
-                                       alt={"Field Image"} width={320} height={180} loading={"lazy"}/>
+                                       alt={"Field Image"} width={320} height={180}/>
                                 <Image className={"my-3 md:my-6 w-full hidden lg:block"}
                                        src={process.env.BACKEND_URL + post.field_image.uri.url}
-                                       alt={"Field Image"} width={1920} height={1080} loading={"lazy"}/>
+                                       alt={"Field Image"} width={1920} height={1080}/>
                             </>
                         }
 
