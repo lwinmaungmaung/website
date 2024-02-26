@@ -8,6 +8,7 @@ import moment from "moment";
 import Menu from "@/components/Menu";
 
 export const revalidate = 60
+
 function readingTime(body_text) {
     const wpm = 225;
     const words = body_text.trim().split(/\s+/).length;
@@ -40,7 +41,7 @@ export default async function Post(props) {
     return (
         <main>
             <title>{post.title}</title>
-            { post.field_image &&
+            {post.field_image &&
                 <meta name={"og:image"} content={process.env.BACKEND_URL + post.field_image.uri.url}/>
             }
             <meta name="MobileOptimized" content="width"/>
@@ -78,16 +79,26 @@ export default async function Post(props) {
                             </div>
                         </div>
 
-                        <div>{(post.field_url && type==='node--event')? <div className="my-4 text-white text-xl bg-red-500 p-2">Live Now : <a href={post.field_url.uri}>{post.field_url.title}</a></div> :''}</div>
+                        <div>{(post.field_url && type === 'node--event') ?
+                            <div className="my-4 text-white text-xl bg-red-500 p-2">Live Now : <a
+                                href={post.field_url.uri}>{post.field_url.title}</a></div> : ''}</div>
                         {post.field_image &&
-                            <Image className={"my-3 md:my-6"} src={process.env.BACKEND_URL + post.field_image.uri.url}
-                                   alt={"Field Image"} width={1920} height={1080} loading={"lazy"}/>
+                            <>
+                                <Image className={"my-3 md:my-6 w-full lg:hidden"}
+                                       src={process.env.BACKEND_URL + post.field_image.uri.url}
+                                       alt={"Field Image"} width={320} height={180} loading={"lazy"}/>
+                                <Image className={"my-3 md:my-6 w-full hidden lg:block"}
+                                       src={process.env.BACKEND_URL + post.field_image.uri.url}
+                                       alt={"Field Image"} width={1920} height={1080} loading={"lazy"}/>
+                            </>
                         }
 
                         <div className="my-3 dark:text-white content-body">
                             <div dangerouslySetInnerHTML={{__html: post.body.processed}}></div>
                             {/*<TextLong value={post.body.processed}/>*/}
-                            <div>{(post.field_url && type==='node--job')? <div className="my-4 dark:text-white text-xl p-2">Source: <a href={post.field_url.uri}>{post.field_url.title}</a></div> :''}</div>
+                            <div>{(post.field_url && type === 'node--job') ?
+                                <div className="my-4 dark:text-white text-xl p-2">Source: <a
+                                    href={post.field_url.uri}>{post.field_url.title}</a></div> : ''}</div>
                         </div>
 
 

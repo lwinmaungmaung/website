@@ -9,7 +9,9 @@ export default async function getPosts() {
             params:{
                 // "fields[node--article]" : 'title,created,body,path',
                 "include": "field_category,field_image",
-                sort: "-created"
+                sort: "-created",
+                // 'page[limit]': 3,
+                // 'page[offset]': 3,
             }
         }
     )
