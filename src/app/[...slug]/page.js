@@ -6,6 +6,7 @@ import GetSinglePost from "@/lib/GetSinglePost";
 import {notFound} from "next/navigation";
 import moment from "moment";
 import Menu from "@/components/Menu";
+import ClientImage from "@/components/ClientImage";
 
 export const revalidate = 60
 
@@ -79,18 +80,13 @@ export default async function Post(props) {
                             </div>
                         </div>
 
-                        <div>{(post.field_url && type === 'node--event') ?
-                            <div className="my-4 text-white text-xl bg-red-500 p-2">Live Now : <a
-                                href={post.field_url.uri}>{post.field_url.title}</a></div> : ''}</div>
+                        {/*<div>{(post.field_url && type === 'node--event') ?*/}
+                        {/*    <div className="my-4 text-white text-xl bg-red-500 p-2">Live Now : <a*/}
+                        {/*        href={post.field_url.uri}>{post.field_url.title}</a></div> : ''}</div>*/}
                         {post.field_image &&
-                            <>
-                                <Image className={"my-3 md:my-6 w-full lg:hidden"}
-                                       src={process.env.BACKEND_URL + post.field_image.uri.url}
-                                       alt={"Field Image"} width={320} height={180}/>
                                 <Image className={"my-3 md:my-6 w-full hidden lg:block"}
                                        src={process.env.BACKEND_URL + post.field_image.uri.url}
-                                       alt={"Field Image"} width={1920} height={1080}/>
-                            </>
+                                       alt={"Field Image"} width={768} height={768} loading={'lazy'}/>
                         }
 
                         <div className="my-3 dark:text-white content-body">

@@ -33,7 +33,7 @@ export default function PostGrid(props) {
                     <p className={"text-sm my-3 dark:text-white"}>{(post.body.summary)?post.body.summary.replace(/(<([^>]+)>)/gi, ""):post.body.processed.replace(/(<([^>]+)>)/gi, "").substring(0,300)+"..."}</p>
                 </div>
                 <div className="w-fit md:w-1/5 flex justify-center md:aspect-square">
-                    { (post.field_image?.uri.url)? <Image className={"object-contain h-auto hidden lg:block w-full"} src={ process.env.BACKEND_URL + post.field_image.uri.url} alt={"none"} width={150} height={150} loading={"lazy"}/> : ""}
+                    { (post.field_image?.uri.url)? <Image className={"object-contain h-auto hidden lg:block w-full"} src={ process.env.BACKEND_URL + post.field_image.uri.url} alt={"none"} width={100} height={100} loading={"lazy"}/> : ""}
 
 
                 </div>
